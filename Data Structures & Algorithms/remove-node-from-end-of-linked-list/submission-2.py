@@ -6,36 +6,30 @@
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        def reverseLL(head: Optional[ListNode]) -> Optional[ListNode]:
-        #reverse 
-            prev = None 
-            cur = head
-
-            while cur:
-                tmp = cur.next 
-                cur.next = prev 
-                prev = cur 
-                cur = tmp 
-            
-            return prev 
-        
-        head = reverseLL(head)
-
-        prev = None 
+        #Count them 
         cur = head 
-        counter = 0
-        while cur and counter < n - 1:
-            counter += 1 
-            tmp = cur.next 
-            prev = cur 
-            cur = tmp 
-            
-        if n == 1:
-            head = head.next
-        else: 
-            prev.next = cur.next 
+        count = 1 
 
-        head = reverseLL(head)
+        while cur.next:
+            cur = cur.next
+            count += 1 
 
+        if count < 2:
+            return None
+        
+        find = count - n + 1
+        if find < 2:
+            return head.next
+        count = 1 
+        cur = head 
+        
+        while count < find - 1:
+            cur = cur.next
+            count += 1
+        
+        cur.next = cur.next.next
         return head 
+
+        
+
 
