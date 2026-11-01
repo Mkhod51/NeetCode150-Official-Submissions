@@ -1,8 +1,14 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        tupled = [(math.sqrt((0-x)**2 + ((0-y)**2)), [x,y]) for (x,y) in points]
-        heapq.heapify(tupled)
+        dists = [((d[0] ** 2) + (d[1] ** 2), [d[0], d[1]]) for d in points]
+        print(dists)
+        heapq.heapify(dists) 
+        res = []
 
+        while k > 0:
+            dist, point = heapq.heappop(dists)
 
-        return [heapq.heappop(tupled)[1] for _ in range(k)]
-
+            res.append(point)
+            k-=1
+        
+        return res 
