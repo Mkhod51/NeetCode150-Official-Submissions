@@ -4,19 +4,14 @@ class Solution:
         heapq.heapify(stones)
 
         while len(stones) > 1:
-            x = -heapq.heappop(stones)
-            y = -heapq.heappop(stones)
+            s1 = -heapq.heappop(stones)
+            s2 = -heapq.heappop(stones)
 
-            if x == y:
+            if s1 == s2:
                 continue 
-            if x < y:
-                y -= x 
-                heapq.heappush(stones, -y)
-            else:
-                x -= y 
-                heapq.heappush(stones, -x) 
             
-        if stones:
-            return -stones[0]
-        else:
-            return 0 
+            heapq.heappush(stones, -abs(s1 - s2))
+        
+        return -stones[0] if stones else 0
+
+        
