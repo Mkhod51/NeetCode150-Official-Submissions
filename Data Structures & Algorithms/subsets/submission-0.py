@@ -3,11 +3,6 @@ class Solution:
         res = [[]]
 
         for n in nums:
-            newSubsets = []
-            for ss in res:
-                newSubsets.append(ss + [n])
-
-            res.extend(newSubsets)
-
-
+            res.extend( [x + [n] for x in res])
+            
         return res
