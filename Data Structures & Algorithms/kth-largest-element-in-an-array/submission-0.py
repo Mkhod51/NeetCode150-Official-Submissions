@@ -4,7 +4,8 @@ class Solution:
 
         for n in nums:
             heapq.heappush(heap, n)
+
             if len(heap) > k:
                 heapq.heappop(heap)
-        
+            
         return heap[0]
